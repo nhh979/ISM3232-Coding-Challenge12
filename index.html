@@ -1,0 +1,27 @@
+<!-- Hoang Nguyen
+     U12840485 -->
+
+     <!DOCTYPE html>
+     <html lang="en">
+     <head>
+         <meta charset="UTF-8">
+         <script src="https://d3js.org/d3.v7.min.js"></script>    
+         <script src="example.js"></script> 
+         <link rel="stylesheet" href="style.css">             
+         <title>Dynamic Data Visualization Dashboard</title>         
+         
+     </head>
+     <body onload="main()">
+        <label for="stockSelect">Select Stock:</label>
+        <select id="stockSelect"></select><br>
+
+        <div id="tooltip" class="hidden">
+            <p><strong>Bar Value</strong></p>
+            <p><span id="value">100</span></p>
+        </div>
+        <!-- <label for="dateRange">Date Range:</label>
+            <input type="date" id="startDate">
+            <input type="date" id="endDate">
+            <button id="filterButton">Filter</button> -->
+     </body>
+     </html>
