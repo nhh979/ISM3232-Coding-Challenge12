@@ -1,0 +1,3 @@
+# Coding Challenge 12
+
+Through this project, we gain a deeper understanding of `D3.js` library. We learn how to extract data from a CSV file and implement filtering functionality to allow users to view data based on selected criteria. We build an interactive bar charts that can display a tooltip and highlight the bar when the mouse hovers over it. We utilize HTML elements such as `dropdown` to change the desire data, and CSS to change the appearance of the selected elements.
