@@ -73,8 +73,8 @@ function main() {
                     .data(filteredData)
                     .enter().append('rect')
                     .attr('class','bar')
-                    // .on('mouseover', onMouseOver) 
-                    // .on('mouseout', onMouseOut)
+                    .on('mouseover', onMouseOver) 
+                    .on('mouseout', onMouseOut)
                     .attr('x', function(d){ return xScale(d.Date)})
                     .attr('y', function(d){ return yScale(d.Price)})
                     .attr("width", xScale.bandwidth())
@@ -84,6 +84,40 @@ function main() {
                     .delay(function(d,i){return i * 50})
                     .attr('height', function(d){return height - yScale(d.Price)})
                 
+                // Create a function for 'mouseover' listerner
+                function onMouseOver(d, i){
+                    // Get bar's x and y coors, then augment for the tooltip
+                    var xPos = parseFloat(d3.select(this).attr('x')) + xScale.bandwidth()/2;
+                    var yPos = parseFloat(d3.select(this).attr('y'))/2 + height/2;
+                    //Update the tooltip
+                    d3.select("#tooltip")
+                        .style("left", xPos+'px').style('top', yPos+'px')
+                        .select('#value').text(`$${i.Price}`)
+                    //Display the tooltip
+                    d3.select('#tooltip',).classed('hidden', false)
+                    //Highlight the bar
+                    d3.select(this).attr('class', 'highlight')
+                    //Add animation 
+                    d3.select(this).transition() 
+                                    .duration(500)
+                                    .attr('width', xScale.bandwidth()+5)
+                                    .attr('y', function(d){return yScale(d.Price) - 10})
+                                    .attr('height', function(d){ return height - yScale(d.Price)+10})
+                }
+                
+                // Create a function for 'mouseout' listerner
+                function onMouseOut(d, i){
+                    //Change the bar's color to the original color
+                    d3.select(this).attr('class', 'bar')
+                    //Revert the animation
+                    d3.select(this).transition()
+                                    .duration(500)
+                                    .attr('width', xScale.bandwidth())
+                                    .attr('y', function(d){return yScale(d.Price)})
+                                    .attr('height', function(d){return height - yScale(d.Price)})
+                    //Hide the tooltip
+                    d3.select('#tooltip',).classed('hidden', true)
+                }
             }            
         }
     )
